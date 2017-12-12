@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "712155312162",
+    "firebase_url": "https://ngantri-6872e.firebaseio.com",
+    "project_id": "ngantri-6872e",
+    "storage_bucket": "ngantri-6872e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712155312162:android:9530c78b34f8a8a1",
+        "android_client_info": {
+          "package_name": "id.dev.ngantri"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "712155312162-gsjfjeh2ekpv25p8qe1qpbt1aqpkip1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYWsqlFcLcp0bcRTOmOYtdn0cZvGt9aAM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
