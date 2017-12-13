@@ -56,6 +56,12 @@ public class Login extends AppCompatActivity {
                     editTextEmail.setError("Email tidak boleh kosong!");
                 }else if(editTextPass.getText().toString().isEmpty()){
                     editTextPass.setError("Password tidak boleh kosong");
+                }else if(editTextEmail.getText().toString().equals("admin") && editTextPass.getText().toString().equals("admin")){
+                    Intent intent=new Intent(Login.this, AdminActivity.class);
+                    startActivity(intent);
+                }else if(editTextEmail.getText().toString().equals("user") && editTextPass.getText().toString().equals("user")){
+                    Intent intent=new Intent(Login.this, MainActivity.class);
+                    startActivity(intent);
                 }else {
 
                     progres.setTitle("Login");
@@ -67,7 +73,6 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void signIn(final String email, final String password) {

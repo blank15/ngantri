@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import id.dev.ngantri.model.Antrian;
+
 /**
  * Created by kikiosha on 12/12/17.
  */
@@ -18,6 +20,12 @@ public class RecyclerViewDaftarAntrian extends RecyclerView.Adapter<RecyclerView
     Context context;
     ArrayList<Integer> nomorAntriaan=new ArrayList<Integer>();
     ArrayList<String> namaPengantri=new ArrayList<String>();
+    ArrayList<Antrian> antrianArrayList=new ArrayList<Antrian>();
+
+    public RecyclerViewDaftarAntrian(Context context, ArrayList<Antrian> antrianArrayList) {
+        this.context = context;
+        this.antrianArrayList = antrianArrayList;
+    }
 
     public RecyclerViewDaftarAntrian(Context context, ArrayList<Integer> nomorAntriaan, ArrayList<String> namaPengantri) {
         this.context = context;
@@ -32,13 +40,13 @@ public class RecyclerViewDaftarAntrian extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textViewNomorAntrian.setText(""+nomorAntriaan.get(position));
-        holder.textViewNamaPentgantri.setText(namaPengantri.get(position));
+        holder.textViewNomorAntrian.setText(""+antrianArrayList.get(position).getNo());
+        holder.textViewNamaPentgantri.setText(""+antrianArrayList.get(position).getNama());
     }
 
     @Override
     public int getItemCount() {
-        return nomorAntriaan.size();
+        return antrianArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
