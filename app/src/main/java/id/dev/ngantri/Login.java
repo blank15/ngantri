@@ -73,6 +73,21 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+
+        Button buttonLoginFb=(Button)findViewById(R.id.buttonLoginFacebook);
+        Button buttonLoginGoogle=(Button)findViewById(R.id.buttonLoginGoogle);
+        buttonLoginFb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Login.this, "Comming Soon", Toast.LENGTH_SHORT).show();
+            }
+        });
+        buttonLoginGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Login.this, "Comming Soon", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void signIn(final String email, final String password) {

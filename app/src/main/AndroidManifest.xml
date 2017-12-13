@@ -15,14 +15,16 @@
         <activity android:name=".AdminActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Login">
+        <activity android:name=".Login"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registrasi"></activity>
+        <activity android:name=".Registrasi"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

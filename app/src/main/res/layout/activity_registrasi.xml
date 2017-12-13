@@ -5,10 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="32dp"
     android:background="@color/colorPrimary"
     tools:context="id.dev.ngantri.Login">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="0dp">
+        <com.rackspira.kal.lib.CustomTextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Ngantri"
+            android:textColor="#ffffff"
+            android:textSize="26sp"
+            app:fontPath="fonts/TypoGraphica_demo.otf"/>
+    </android.support.v7.widget.Toolbar>
     <ImageView
+        android:paddingTop="32dp"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
