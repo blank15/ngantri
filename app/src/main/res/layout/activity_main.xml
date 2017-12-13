@@ -8,26 +8,129 @@
     android:padding="16dp"
     tools:context="id.dev.ngantri.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Keperluan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Masukkan Keperluan Anda"
-        android:id="@+id/editKeperluan"
-        android:textSize="14sp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ambil Nomer Antriann"
-        android:id="@+id/btnAmbilAntrian"/>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.CardView>
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Data penganatri"
+              android:textColor="@color/colorBlack"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+          <EditText
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="Masukkan Nama Anda"
+              android:id="@+id/editNama"
+              android:textSize="14sp"/>
+          <EditText
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="Masukkan Keperluan Anda"
+              android:id="@+id/editKeperluan"
+              android:textSize="14sp"/>
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Ambil Nomer Antriann"
+              android:background="@drawable/custom_rounded_button"
+              android:textColor="@color/colorWhite"
+              android:id="@+id/btnAmbilAntrian"/>
+          <android.support.v7.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="16dp"
+              app:cardElevation="5dp"
+              app:cardCornerRadius="5dp">
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="16dp">
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Selamat Datang"
+                      android:gravity="center"
+                      android:textColor="@color/colorBlack"
+                      android:textSize="16sp"/>
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Nomer antrian Anda"
+                      android:gravity="center"
+                      android:textColor="@color/colorBlack"
+                      android:textSize="16sp"/>
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="001"
+                      android:gravity="center"
+                      android:textColor="@color/colorBlack"
+                      android:textStyle="bold"
+                      android:textSize="64sp"/>
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="12/12/2017"
+                      android:gravity="center"
+                      android:textColor="@color/colorBlack"
+                      android:textSize="14sp"/>
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Mohon datang"
+                      android:gravity="center"
+                      android:textColor="@color/colorBlack"
+                      android:textSize="16sp"/>
+
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Sebelum nomer antrian anda"
+                      android:gravity="center"
+                      android:textColor="@color/colorBlack"
+                      android:textSize="16sp"/>
+              </LinearLayout>
+          </android.support.v7.widget.CardView>
+
+          <android.support.v7.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:cardElevation="5dp"
+              app:cardCornerRadius="5dp"
+              android:layout_marginTop="16dp">
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="16dp">
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Nomer antrian saat ini"
+                      android:gravity="center"
+                      android:textColor="@color/colorBlack"
+                      android:textSize="16sp"/>
+                  <TextView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="001"
+                      android:gravity="center"
+                      android:textColor="@color/colorAccent"
+                      android:textStyle="bold"
+                      android:textSize="32sp"/>
+              </LinearLayout>
+          </android.support.v7.widget.CardView>
+      </LinearLayout>
+  </ScrollView>
 </LinearLayout>
