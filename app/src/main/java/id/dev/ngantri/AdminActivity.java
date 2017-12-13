@@ -1,7 +1,13 @@
 package id.dev.ngantri;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +29,7 @@ public class AdminActivity extends AppCompatActivity {
     ArrayList<Integer> nomorAntrian=new ArrayList<Integer>();
     ArrayList<String> namaPengantri=new ArrayList<String>();
     ArrayList<Antrian> antrianArrayList=new ArrayList<Antrian>();
+    private static final  int NOTIFICATION_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,7 @@ public class AdminActivity extends AppCompatActivity {
                 RecyclerViewDaftarAntrian adapter=new RecyclerViewDaftarAntrian(AdminActivity.this, antrianArrayList);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                //notification();
             }
 
             @Override
@@ -57,5 +65,26 @@ public class AdminActivity extends AppCompatActivity {
                 System.out.println(databaseError.getDetails()+" "+databaseError.getMessage());
             }
         });
+    }
+
+    private void notification() {
+
+        Intent intentNotife = new Intent(getApplicationContext(),MainActivity.class);
+        intentNotife.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        PendingIntent intent = PendingIntent.getActivity(getApplicationContext(),0,intentNotife,0);
+        NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Ngantri")
+                .setAutoCancel(true)
+                .setContentIntent(intent)
+                .setContentText("Antrian Anda Sudah Dekat");
+
+        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        builder.setSound(sound);
+
+        notificationManager.notify(NOTIFICATION_ID,builder.build());
     }
 }
