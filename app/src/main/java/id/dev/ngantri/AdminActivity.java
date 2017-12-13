@@ -1,5 +1,7 @@
 package id.dev.ngantri;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,9 +40,10 @@ public class AdminActivity extends AppCompatActivity {
         databaseReference.child("Daftar").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                antrianArrayList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     Antrian antrian=dataSnapshot1.getValue(Antrian.class);
-                    antrian.setKey(dataSnapshot1.getKey());
+                    //antrian.setKey(dataSnapshot1.getKey());
 
                     antrianArrayList.add(antrian);
                 }

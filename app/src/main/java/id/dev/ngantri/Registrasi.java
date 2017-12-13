@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,7 @@ public class Registrasi extends AppCompatActivity {
 
     EditText editTextEmail;
     EditText editTextPassword;
+    TextView textViewSignin;
     Button buttonRegistrasi;
     ProgressDialog progres;
     private FirebaseAuth fAuth;
@@ -30,6 +32,7 @@ public class Registrasi extends AppCompatActivity {
         editTextEmail = (EditText)findViewById(R.id.editTextEmailReg);
         editTextPassword = (EditText)findViewById(R.id.editTextPaswordReg);
         buttonRegistrasi = (Button)findViewById(R.id.buttonRegis);
+        textViewSignin = (TextView) findViewById(R.id.textViewLogin);
         fAuth = FirebaseAuth.getInstance();
         progres = new ProgressDialog(Registrasi.this);
         buttonRegistrasi.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +51,14 @@ public class Registrasi extends AppCompatActivity {
                     progres.setCanceledOnTouchOutside(false);
                     signUp(editTextEmail.getText().toString(),editTextPassword.getText().toString());
                 }
+            }
+        });
+
+        textViewSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Registrasi.this, Login.class);
+                startActivity(intent);
             }
         });
     }
