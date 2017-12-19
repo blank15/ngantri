@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             dataModel.setKeperluan(keperluan);
             dataModel.setStatus(false);
             dataModel.setTanggal("13/12/2007");
+            dataModel.setToken(FirebaseInstanceId.getInstance().getToken());
             databaseReference.child("Daftar").child(No).setValue(dataModel);
             cardView.setVisibility(View.VISIBLE);
             editTextNOmer.setText(No);
