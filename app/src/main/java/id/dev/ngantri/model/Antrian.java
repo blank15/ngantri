@@ -11,16 +11,27 @@ public class Antrian {
     private String No;
     private Boolean Status;
     private String Tanggal;
+    private String Token;
 
     public Antrian() {
     }
 
-    public Antrian(String keperluan, String nama, String no, Boolean status, String tanggal) {
+    public Antrian(String key, String keperluan, String nama, String no, Boolean status, String tanggal, String token) {
+        this.key = key;
         Keperluan = keperluan;
         Nama = nama;
         No = no;
         Status = status;
         Tanggal = tanggal;
+        Token = token;
+    }
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
     }
 
     public String getKey() {

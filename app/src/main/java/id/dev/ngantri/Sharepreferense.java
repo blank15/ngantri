@@ -21,4 +21,7 @@ public class Sharepreferense {
     public String getNomer(){
         return sharedPreferences.getString("Nomer","1");
     }
+    public String getLogin(){
+        return sharedPreferences.getString("Login","tidak");
+    }
 }
