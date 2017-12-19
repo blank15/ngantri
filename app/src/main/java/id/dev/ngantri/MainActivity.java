@@ -62,31 +62,69 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         textVieSaatIni.setText("10");
 
-        final ArrayList<Antrian> NomerIndek = new ArrayList<>();
+
         final ArrayList<String> nomer2 = new ArrayList<>();
         final ArrayList<Boolean> status = new ArrayList<>();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                NomerIndek.clear();
+//                nomer2.clear();
+////                status.clear();
+//                temp = 0;
+//                for(DataSnapshot data : dataSnapshot.child("Daftar").getChildren()){
+//                    Antrian antrian = dataSnapshot.getValue(Antrian.class);
+//                    NomerIndek.add(antrian);
+//                    Log.d("DANCOK", ""+antrian.getNo());
+//                    antrianArrayList.add(antrian);
+//                    nomer2.add(antrian.getNo());
+//                    status.add(antrian.getStatus());
+//                }
+//
+//                Log.d("Nomer",nomer2.size()+"");
+//                Log.d("Size",NomerIndek.size()+"");
+//                textVieSaatIni.setVisibility(View.VISIBLE);
+//                            textVieSaatIni.setText(NomerIndek.size() + " ");
+//                temp = NomerIndek.size()+1;
+////                            textVieSaatIni.setText(temp);
+//                Log.d("status",status+"");
+//                int tes = Integer.parseInt(nomerAngka);
+////                for(int i =0;i <nomer2.size();i++){
+////                    if (status.get(i)){
+////                        Log.d("Di sini nomer" ,nomer2.get(i).toString() + "");
+////                    }
+////                }
+//                if(tes != 0 && temp  == tes){
+//                    notification();
+//                }
+//                pref = getSharedPreferences("PREFERENSE",MODE_PRIVATE);
+//                SharedPreferences.Editor editor = pref.edit();
+//                editor.putString("Nomer",temp.toString());
+//                editor.commit();
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+
+        databaseReference.child("Daftar").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                NomerIndek.clear();
-                nomer2.clear();
-//                status.clear();
-                temp = 0;
-                for(DataSnapshot data : dataSnapshot.child("Daftar").getChildren()){
-                    Antrian antrian = dataSnapshot.getValue(Antrian.class);
-                    NomerIndek.add(antrian);
-                    Log.d("DANCOK", ""+antrian.getNo());
-                    antrianArrayList.add(antrian);
-                    nomer2.add(antrian.getNo());
-                    status.add(antrian.getStatus());
-                }
+                antrianArrayList.clear();
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    Antrian antrian=dataSnapshot1.getValue(Antrian.class);
+                    //antrian.setKey(dataSnapshot1.getKey());
 
-                Log.d("Nomer",nomer2.size()+"");
-                Log.d("Size",NomerIndek.size()+"");
+                    antrianArrayList.add(antrian);
+                    Log.d("nomer",antrian.getNo());
+                }
                 textVieSaatIni.setVisibility(View.VISIBLE);
-                            textVieSaatIni.setText(NomerIndek.size() + " ");
-                temp = NomerIndek.size()+1;
+                            textVieSaatIni.setText(antrianArrayList.size());
+                temp = antrianArrayList.size()+1;
 //                            textVieSaatIni.setText(temp);
                 Log.d("status",status+"");
                 int tes = Integer.parseInt(nomerAngka);
@@ -102,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("Nomer",temp.toString());
                 editor.commit();
-
             }
 
             @Override
