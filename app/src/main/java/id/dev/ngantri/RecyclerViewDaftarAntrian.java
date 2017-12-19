@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import id.dev.ngantri.RestAPI.PushAPI;
 import id.dev.ngantri.model.Antrian;
+import id.dev.ngantri.model.DataNotifikasi;
+import id.dev.ngantri.model.Notifikasi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by kikiosha on 12/12/17.
@@ -31,6 +40,7 @@ public class RecyclerViewDaftarAntrian extends RecyclerView.Adapter<RecyclerView
     ArrayList<String> namaPengantri=new ArrayList<String>();
     ArrayList<Antrian> antrianArrayList=new ArrayList<Antrian>();
     DatabaseReference database;
+    public static final String BASE_URL="https://fcm.googleapis.com/";
 
     public RecyclerViewDaftarAntrian(Context context, ArrayList<Antrian> antrianArrayList) {
         this.context = context;
@@ -74,8 +84,53 @@ public class RecyclerViewDaftarAntrian extends RecyclerView.Adapter<RecyclerView
                                     antrian.setNo(antrianArrayList.get(position).getNo());
                                     antrian.setTanggal(antrianArrayList.get(position).getTanggal());
                                     antrian.setStatus(true);
+                                    antrian.setToken(antrianArrayList.get(position).getToken());
 
                                     updateBarang(antrian);
+
+                                    Retrofit retrofit=new Retrofit.Builder()
+                                            .baseUrl(BASE_URL)
+                                            .addConverterFactory(GsonConverterFactory.create())
+                                            .build();
+                                    PushAPI pushAPI=retrofit.create(PushAPI.class);
+
+
+                                    DataNotifikasi dataNotifikasi=new DataNotifikasi();
+                                    dataNotifikasi.setTitle("Ngantri");
+                                    dataNotifikasi.setText("Saat Ini Adalah Nomor Antrian Anda");
+
+                                    Call<Notifikasi> call=pushAPI.setNotif(new Notifikasi(dataNotifikasi, antrianArrayList.get(position).getToken()));
+                                    call.enqueue(new Callback<Notifikasi>() {
+                                        @Override
+                                        public void onResponse(Call<Notifikasi> call, Response<Notifikasi> response) {
+                                            Log.d("Push No ngantri", "Berhasil");
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Notifikasi> call, Throwable t) {
+                                            Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show();
+                                            Log.d("Response",t.toString());
+                                        }
+                                    });
+
+                                    DataNotifikasi dataNotifikasi2=new DataNotifikasi();
+                                    dataNotifikasi2.setTitle("Ngantri");
+                                    dataNotifikasi2.setText("Antrian Anda Sudah Dekat, Saat Ini Sudah No Antrian "+antrianArrayList.get(position).getNo());
+
+                                    Call<Notifikasi> call2=pushAPI.setNotif(new Notifikasi(dataNotifikasi2, antrianArrayList.get(position+1).getToken()));
+                                    call2.enqueue(new Callback<Notifikasi>() {
+                                        @Override
+                                        public void onResponse(Call<Notifikasi> call, Response<Notifikasi> response) {
+                                            Log.d("Push No waiting", "Berhasil");
+                                            Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Notifikasi> call, Throwable t) {
+                                            Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show();
+                                            Log.d("Response",t.toString());
+                                        }
+                                    });
                                     break;
                             }
                         }
@@ -103,7 +158,7 @@ public class RecyclerViewDaftarAntrian extends RecyclerView.Adapter<RecyclerView
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "Berhasil!", Toast.LENGTH_SHORT).show();
+                        Log.d("Update", "Berhasil");
                     }
                 });
     }
