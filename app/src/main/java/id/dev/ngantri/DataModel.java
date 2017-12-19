@@ -5,50 +5,49 @@ package id.dev.ngantri;
  */
 
 public class DataModel {
-    String nomer;
-    String nama;
-    String keperluan;
-    String tanggal;
-    String Status;
-    String id;
+    String Nomer;
+    String Nama;
+    String Keperluan;
+    String Tanggal;
+    boolean Status;
 
     public String getNomer() {
-        return nomer;
+        return Nomer;
     }
 
     public void setNomer(String nomer) {
-        this.nomer = nomer;
+        Nomer = nomer;
     }
 
     public String getNama() {
-        return nama;
+        return Nama;
     }
 
     public void setNama(String nama) {
-        this.nama = nama;
+        Nama = nama;
     }
 
     public String getKeperluan() {
-        return keperluan;
+        return Keperluan;
     }
 
     public void setKeperluan(String keperluan) {
-        this.keperluan = keperluan;
+        Keperluan = keperluan;
     }
 
     public String getTanggal() {
-        return tanggal;
+        return Tanggal;
     }
 
     public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
+        Tanggal = tanggal;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return Status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         Status = status;
     }
 }

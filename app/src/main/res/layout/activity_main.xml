@@ -48,6 +48,8 @@
               android:layout_height="wrap_content"
               android:layout_marginTop="16dp"
               app:cardElevation="5dp"
+              android:id="@+id/cardView"
+              android:visibility="gone"
               app:cardCornerRadius="5dp">
               <LinearLayout
                   android:layout_width="match_parent"
@@ -74,6 +76,7 @@
                       android:layout_height="wrap_content"
                       android:text="001"
                       android:gravity="center"
+                      android:id="@+id/editNomer"
                       android:textColor="@color/colorBlack"
                       android:textStyle="bold"
                       android:textSize="64sp"/>
@@ -107,6 +110,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               app:cardElevation="5dp"
+              android:visibility="visible"
               app:cardCornerRadius="5dp"
               android:layout_marginTop="16dp">
               <LinearLayout
@@ -126,6 +130,7 @@
                       android:layout_height="wrap_content"
                       android:text="001"
                       android:gravity="center"
+                      android:id="@+id/textViewSaatIni"
                       android:textColor="@color/colorAccent"
                       android:textStyle="bold"
                       android:textSize="32sp"/>
