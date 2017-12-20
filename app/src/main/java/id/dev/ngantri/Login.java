@@ -2,6 +2,7 @@ package id.dev.ngantri;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class Login extends AppCompatActivity {
     EditText editTextEmail;
     EditText editTextPass;
     Button buttonLogin;
+    SharedPreferences pref;
     TextView textViewRegis;
     ProgressDialog progres;
     private FirebaseAuth fAuth;
@@ -99,6 +101,10 @@ public class Login extends AppCompatActivity {
                 if(!task.isSuccessful()){
                     Toast.makeText(Login.this,"Email atau password tidak Cocok!",Toast.LENGTH_SHORT).show();
                 }else{
+                    pref = getSharedPreferences("PREFERENSE",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("Login","ya");
+                    editor.commit();
                     Intent intent = new Intent(Login.this,MainActivity.class);
                     startActivity(intent);
                 }

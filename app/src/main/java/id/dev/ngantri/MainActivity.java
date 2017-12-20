@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progres;
     Integer temp ;
     SharedPreferences pref;
+    Sharepreferense sharepreferense;
     String nomerAngka ="0";
     ArrayList<Antrian> antrianArrayList=new ArrayList<Antrian>();
     private static final  int NOTIFICATION_ID = 1;
@@ -61,9 +62,12 @@ public class MainActivity extends AppCompatActivity {
         progres = new ProgressDialog(MainActivity.this);
         editTextNOmer = (TextView) findViewById(R.id.editNomer);
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        textVieSaatIni.setText("10");
+        sharepreferense = new Sharepreferense(MainActivity.this);
 
-
+        if(sharepreferense.getNomer() != null){
+            cardView.setVisibility(View.VISIBLE);
+            editTextNOmer.setText(sharepreferense.getNomer());
+        }
         final ArrayList<String> nomer2 = new ArrayList<>();
         final ArrayList<Boolean> status = new ArrayList<>();
 
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("status",status+"");
                 int tes = Integer.parseInt(nomerAngka);
                 if(tes != 0 && temp  == tes){
-                    notification();
+//                    notification();
                 }
                 pref = getSharedPreferences("PREFERENSE",MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
@@ -113,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     progres.setCanceledOnTouchOutside(false);
 
                     Log.d("TAG", "InstanceID Token : " + FirebaseInstanceId.getInstance().getToken());
-                    final  Sharepreferense sharepreferense = new Sharepreferense(MainActivity.this);
+
                     nomerAngka = sharepreferense.getNomer() ;
                     Log.d("angkaAwal",temp+"");
                     Log.d("angka",nomerAngka);

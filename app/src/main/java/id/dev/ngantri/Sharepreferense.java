@@ -19,7 +19,7 @@ public class Sharepreferense {
         editor = sharedPreferences.edit();
     }
     public String getNomer(){
-        return sharedPreferences.getString("Nomer","1");
+        return sharedPreferences.getString("Nomer",null);
     }
     public String getLogin(){
         return sharedPreferences.getString("Login","tidak");
