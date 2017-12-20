@@ -11,17 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".AdminActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".Login"
+
+        <activity android:name=".AdminActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Login"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".Registrasi" />
-
-        <service android:name=".MyFirebaseMessagingService">
+        <activity android:name=".Registrasi"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <service
+            android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

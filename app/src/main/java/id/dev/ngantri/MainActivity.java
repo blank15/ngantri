@@ -26,7 +26,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.UUID;
 
 import id.dev.ngantri.model.Antrian;
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("status",status+"");
                 int tes = Integer.parseInt(nomerAngka);
                 if(tes != 0 && temp  == tes){
-//                    notification();
+                    //notification();
                 }
                 pref = getSharedPreferences("PREFERENSE",MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
@@ -131,11 +133,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void addData(String Nama, String keperluan,String No) {
 //            progres.dismiss();
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = sdf.format(c.getTime());
+
             dataModel.setNo(No);
             dataModel.setNama(Nama);
             dataModel.setKeperluan(keperluan);
             dataModel.setStatus(false);
-            dataModel.setTanggal("13/12/2007");
+            dataModel.setTanggal(strDate);
             dataModel.setToken(FirebaseInstanceId.getInstance().getToken());
             databaseReference.child("Daftar").child(No).setValue(dataModel);
             cardView.setVisibility(View.VISIBLE);

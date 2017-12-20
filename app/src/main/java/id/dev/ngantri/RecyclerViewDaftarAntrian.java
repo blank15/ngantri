@@ -113,24 +113,28 @@ public class RecyclerViewDaftarAntrian extends RecyclerView.Adapter<RecyclerView
                                         }
                                     });
 
-                                    DataNotifikasi dataNotifikasi2=new DataNotifikasi();
-                                    dataNotifikasi2.setTitle("Ngantri");
-                                    dataNotifikasi2.setText("Antrian Anda Sudah Dekat, Saat Ini Sudah No Antrian "+antrianArrayList.get(position).getNo());
+                                    try{
+                                        DataNotifikasi dataNotifikasi2=new DataNotifikasi();
+                                        dataNotifikasi2.setTitle("Ngantri");
+                                        dataNotifikasi2.setText("Antrian Anda Sudah Dekat, Saat Ini Sudah No Antrian "+antrianArrayList.get(position).getNo());
 
-                                    Call<Notifikasi> call2=pushAPI.setNotif(new Notifikasi(dataNotifikasi2, antrianArrayList.get(position+1).getToken()));
-                                    call2.enqueue(new Callback<Notifikasi>() {
-                                        @Override
-                                        public void onResponse(Call<Notifikasi> call, Response<Notifikasi> response) {
-                                            Log.d("Push No waiting", "Berhasil");
-                                            Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT).show();
-                                        }
+                                        Call<Notifikasi> call2=pushAPI.setNotif(new Notifikasi(dataNotifikasi2, antrianArrayList.get(position+1).getToken()));
+                                        call2.enqueue(new Callback<Notifikasi>() {
+                                            @Override
+                                            public void onResponse(Call<Notifikasi> call, Response<Notifikasi> response) {
+                                                Log.d("Push No waiting", "Berhasil");
+                                                Toast.makeText(context, "Berhasil", Toast.LENGTH_SHORT).show();
+                                            }
 
-                                        @Override
-                                        public void onFailure(Call<Notifikasi> call, Throwable t) {
-                                            Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show();
-                                            Log.d("Response",t.toString());
-                                        }
-                                    });
+                                            @Override
+                                            public void onFailure(Call<Notifikasi> call, Throwable t) {
+                                                Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show();
+                                                Log.d("Response",t.toString());
+                                            }
+                                        });
+                                    } catch (IndexOutOfBoundsException e){
+                                        e.printStackTrace();
+                                    }
                                     break;
                             }
                         }
