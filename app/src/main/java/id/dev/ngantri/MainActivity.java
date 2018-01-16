@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 antrianArrayList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     Antrian antrian=dataSnapshot1.getValue(Antrian.class);
-
-
                     antrianArrayList.add(antrian);
                     Log.d("nomer",antrian.getNo());
                 }

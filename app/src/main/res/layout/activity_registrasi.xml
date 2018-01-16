@@ -145,62 +145,62 @@
             android:textColor="@color/colorWhite"/>
 
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/linearLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:layout_marginRight="16dp"-->
+        <!--android:orientation="horizontal">-->
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="2"
-            android:background="@color/colorWhite" />
+        <!--<View-->
+            <!--android:id="@+id/view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_weight="2"-->
+            <!--android:background="@color/colorWhite" />-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:text="Atau"
-            android:textColor="@color/colorWhite" />
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="3"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Atau"-->
+            <!--android:textColor="@color/colorWhite" />-->
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="2"
-            android:background="@color/colorWhite" />
-    </LinearLayout>
+        <!--<View-->
+            <!--android:id="@+id/view2"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_weight="2"-->
+            <!--android:background="@color/colorWhite" />-->
+    <!--</LinearLayout>-->
 
-    <Button
-        android:id="@+id/buttonRegisFacebook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/custom_rounded_facebook"
-        android:text="Registrasi dengan facebook"
-        android:textColor="@color/colorWhite" />
+    <!--<Button-->
+        <!--android:id="@+id/buttonRegisFacebook"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="24dp"-->
+        <!--android:layout_marginStart="24dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:background="@drawable/custom_rounded_facebook"-->
+        <!--android:text="Registrasi dengan facebook"-->
+        <!--android:textColor="@color/colorWhite" />-->
 
-    <Button
-        android:id="@+id/buttonLRegisGoogle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/custom_rounder_google"
-        android:text="Registrasi dengangoogle"
-        android:textColor="@color/colorWhite"/>
+    <!--<Button-->
+        <!--android:id="@+id/buttonLRegisGoogle"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="24dp"-->
+        <!--android:layout_marginStart="24dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:background="@drawable/custom_rounder_google"-->
+        <!--android:text="Registrasi dengangoogle"-->
+        <!--android:textColor="@color/colorWhite"/>-->
 
 </LinearLayout>
 

@@ -61,21 +61,21 @@ public class Registrasi extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Button buttonRegisFb=(Button)findViewById(R.id.buttonRegisFacebook);
-        Button buttonRegisGoogle=(Button)findViewById(R.id.buttonLRegisGoogle);
-        buttonRegisFb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Registrasi.this, "Comming Soon", Toast.LENGTH_SHORT).show();
-            }
-        });
-        buttonRegisGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Registrasi.this, "Comming Soon", Toast.LENGTH_SHORT).show();
-            }
-        });
+//
+//        Button buttonRegisFb=(Button)findViewById(R.id.buttonRegisFacebook);
+//        Button buttonRegisGoogle=(Button)findViewById(R.id.buttonLRegisGoogle);
+//        buttonRegisFb.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(Registrasi.this, "Comming Soon", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        buttonRegisGoogle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(Registrasi.this, "Comming Soon", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void signUp(String e, String pss) {

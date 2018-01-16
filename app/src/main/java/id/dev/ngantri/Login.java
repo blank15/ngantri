@@ -14,10 +14,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class Login extends AppCompatActivity {
 
@@ -29,7 +37,9 @@ public class Login extends AppCompatActivity {
     ProgressDialog progres;
     private FirebaseAuth fAuth;
     private FirebaseAuth.AuthStateListener fStateListener;
-
+    public GoogleApiClient googleApiClient;
+    public static final int RequestSignInCode = 7;
+//    private GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = Login.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,18 +88,73 @@ public class Login extends AppCompatActivity {
 
         Button buttonLoginFb=(Button)findViewById(R.id.buttonLoginFacebook);
         Button buttonLoginGoogle=(Button)findViewById(R.id.buttonLoginGoogle);
+
+        //config google sign in
+        final GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(Login.this)
+                .enableAutoManage(Login.this, new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+                    }
+                }).addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
         buttonLoginFb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Login.this, "Comming Soon", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Belum bisa di gunakan ,karena nama package aplikasi belum ada di playstore", Toast.LENGTH_SHORT).show();
             }
         });
         buttonLoginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Login.this, "Comming Soon", Toast.LENGTH_SHORT).show();
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                startActivityForResult(signInIntent, RequestSignInCode);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RequestSignInCode){
+
+            GoogleSignInResult googleSignInResult = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+
+            if (googleSignInResult.isSuccess()){
+
+                GoogleSignInAccount googleSignInAccount = googleSignInResult.getSignInAccount();
+
+                FirebaseUserAuth(googleSignInAccount);
+            }
+
+        }
+    }
+
+    private void FirebaseUserAuth(GoogleSignInAccount googleSignInAccount) {
+        AuthCredential authCredential = GoogleAuthProvider.getCredential(googleSignInAccount.getIdToken(), null);
+
+        Toast.makeText(Login.this,""+ authCredential.getProvider(),Toast.LENGTH_LONG).show();
+        fAuth.signInWithCredential(authCredential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progres.dismiss();
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(Login.this, "Gagal Login!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            pref = getSharedPreferences("PREFERENSE", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("Login", "ya");
+                            editor.commit();
+                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
     }
 
     private void signIn(final String email, final String password) {
