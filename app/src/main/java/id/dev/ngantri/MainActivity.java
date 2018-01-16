@@ -82,14 +82,21 @@ public class MainActivity extends AppCompatActivity {
                     antrianArrayList.add(antrian);
                     Log.d("nomer",antrian.getNo());
                 }
+
+                int noAntrian=Integer.parseInt(editTextNOmer.getText().toString());
+                int noAntri=noAntrian+10;
+                Log.d("no antri", noAntri+"");
+                Log.d("size",antrianArrayList.size()+"");
+                if (noAntri<=antrianArrayList.size()){
+                    buttonAntri.setClickable(true);
+                } else {
+                    buttonAntri.setClickable(false);
+                }
+
                 textVieSaatIni.setVisibility(View.VISIBLE);
                             textVieSaatIni.setText(antrianArrayList.size()+"");
                 temp = antrianArrayList.size()+1;
                 Log.d("status",status+"");
-                int tes = Integer.parseInt(nomerAngka);
-                if(tes != 0 && temp  == tes){
-                    //notification();
-                }
                 pref = getSharedPreferences("PREFERENSE",MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("Nomer",temp.toString());
@@ -119,9 +126,16 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("TAG", "InstanceID Token : " + FirebaseInstanceId.getInstance().getToken());
 
                     nomerAngka = sharepreferense.getNomer() ;
-                    Log.d("angkaAwal",temp+"");
-                    Log.d("angka",nomerAngka);
-                    addData(editTextNama.getText().toString(),editTextKeperluan.getText().toString(),nomerAngka);
+                    if (nomerAngka==null){
+                        Log.d("angkaAwal",temp+"");
+                        Log.d("angka",nomerAngka+"");
+                        addData(editTextNama.getText().toString(),editTextKeperluan.getText().toString(),"1");
+                    } else {
+                        Log.d("angkaAwal",temp+"");
+                        Log.d("angka",nomerAngka+"");
+                        addData(editTextNama.getText().toString(),editTextKeperluan.getText().toString(),nomerAngka);
+                    }
+
                     progres.dismiss();
                 }
 

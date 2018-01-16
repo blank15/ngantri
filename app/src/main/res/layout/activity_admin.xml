@@ -20,6 +20,14 @@
             android:textSize="26sp"
             app:fontPath="fonts/TypoGraphica_demo.otf"/>
     </android.support.v7.widget.Toolbar>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_reset"
+        android:text="reset"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/custom_rounded_button"
+        android:layout_margin="8dp"/>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

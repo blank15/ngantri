@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +28,7 @@ import id.dev.ngantri.model.Antrian;
 public class AdminActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     RecyclerView recyclerView;
+    Button buttonReset;
     ArrayList<Integer> nomorAntrian=new ArrayList<Integer>();
     ArrayList<String> namaPengantri=new ArrayList<String>();
     ArrayList<Antrian> antrianArrayList=new ArrayList<Antrian>();
@@ -65,26 +68,13 @@ public class AdminActivity extends AppCompatActivity {
                 System.out.println(databaseError.getDetails()+" "+databaseError.getMessage());
             }
         });
-    }
 
-    private void notification() {
-
-        Intent intentNotife = new Intent(getApplicationContext(),MainActivity.class);
-        intentNotife.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent intent = PendingIntent.getActivity(getApplicationContext(),0,intentNotife,0);
-        NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Ngantri")
-                .setAutoCancel(true)
-                .setContentIntent(intent)
-                .setContentText("Antrian Anda Sudah Dekat");
-
-        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        builder.setSound(sound);
-
-        notificationManager.notify(NOTIFICATION_ID,builder.build());
+        buttonReset=(Button)findViewById(R.id.button_reset);
+        buttonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference.child("Daftar").removeValue();
+            }
+        });
     }
 }
